@@ -75,13 +75,13 @@ public class WLANService extends Service {
                 }
             } else {
                 Toast.makeText(context, "WIFI DISCONNECTED!", Toast.LENGTH_SHORT).show();
-                Log.i("Wi-Fi-State", "Wi-Fi is Off!");
+                //Log.i("Wi-Fi-State", "Wi-Fi is Off!");
             }
         }
     };
 
     public WLANService() {
-        // why do you need this, by the way?
+
     }
 
     @Override
@@ -113,7 +113,9 @@ public class WLANService extends Service {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-            return LoginHelper.doLogin(username, password, "http://".concat(url));
+            String formatted_url = url.replace("http://", "");
+            Log.i("url", formatted_url);
+            return LoginHelper.doLogin(username, password, "http://".concat(formatted_url));
         }
     }
 

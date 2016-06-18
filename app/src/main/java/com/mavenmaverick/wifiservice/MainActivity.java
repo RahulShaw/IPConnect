@@ -4,12 +4,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     EditText user, pass, wifiname, loginurl;
 
@@ -23,10 +28,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+
+        Button startService = (Button) findViewById(R.id.startservice);
+        Button stopService = (Button) findViewById(R.id.stopservice);
+
         user = (EditText) findViewById(R.id.username);
+        user.setTypeface(typeface);
         pass = (EditText) findViewById(R.id.password);
+        pass.setTypeface(typeface);
         wifiname = (EditText) findViewById(R.id.ssid);
+        wifiname.setTypeface(typeface);
         loginurl = (EditText) findViewById(R.id.url);
+        loginurl.setTypeface(typeface);
+
+        startService.setTypeface(typeface);
+        stopService.setTypeface(typeface);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences(CREDENTIALS, 0);
         if(sharedPreferences.contains("username")) {
@@ -97,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
 
+            Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Lato-Regular.ttf");
+
+            TextView message = (TextView) alertDialog.findViewById(android.R.id.message);
+            message.setTypeface(typeface);
 
             }
         }
